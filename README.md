@@ -21,6 +21,7 @@ An eccomerce/e-bay like project done in Django and Boostrap.
 ## Known issues
 1. The images on the listing page are not properly formatted. Because of the grid system if the image on the right needs more height, the one on the left will
    have white space beneath.
+2. There is a lot of missing logic like you can bid a sum of money that maybe you do not have.
 
 This project was done as a homework for the CS50 Web course ( project 2 ).  <br> Every line of code was written by me.
 <br>
