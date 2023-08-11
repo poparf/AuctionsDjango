@@ -1,0 +1,133 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %}
+    Auction - {{ listing.title }}
+{% endblock %}
+
+{% block body %}
+
+<div style="margin-left:20px;">
+    <div class="listing-header">
+        <p class="listing-header-title">{{ listing.title }}</p>
+        <p class="listing-header-subtitle">Added at: {{  listing.creationDate }} by {{ listing.author }}</p>
+        <hr>
+    </div>
+    
+<div class="button-listing-container">
+    <div class="category-container">
+        
+        <a href="{% url 'category' listing.category%}"><p>Category: {{ listing.category }}</p></a>
+    </div>
+    <div>
+        {% if owner == 1 and listing.active == True %}
+        <a href="{% url 'close' listing.title %}"><button class="btn btn-danger">Close Auction</button></a>
+        {% endif %}
+    </div>
+    {% if listing.active == True and wl %}
+        {% if user.is_authenticated and owner == 0 %}
+        <div>
+            
+                    <a href="{% url 'wishlist_add' listing.title %}"><button id="wishlist-btn" class="btn btn-info">Wishlist</button></a> <!-- implement watchlist/wishlist -->
+        </div>
+                    {% elif owner == 0 %}
+        <div>     
+                    <a href="{% url 'login' %}"><button>Sign in to add to wishlist</button></a> 
+                
+        </div>
+        {% endif %}
+    {% endif %}
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="img-container">
+                <img class="img-fluid" src="{{ listing.image.url|urlencode }}" alt="{{ listing.title }}">
+            </div>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center justify-content-between">
+            <div class="price-container">
+                <p>Price: {{ listing.price }}</p>
+            </div>
+            <div class="description-container">
+                <p style="font-size:25px; font-weight: bold;">Description</p>
+                <p>{{ listing.description }}</p>
+            </div>
+            <div>
+                {% if listing.active == False %}
+                <div>
+                    <p style="color:green; font-size:20px;">The winner is: {{ highestBid.author }}. The auction is closed.</p>
+                </div>
+                {% endif %}
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    {% if error %}
+                        <div class="text-danger">{{ message }}</div>
+                    {%endif%}
+                    {% if error == 0 %}
+                        <div style="color:green">{{ message }}</div>
+                    {% endif %}
+                    {% if listing.active == 1 %}
+                        <form action="{% url 'bid' listing.title %}" method="POST" >
+                            {% csrf_token %}
+                            {{ BidForm }}
+                            <input type="submit" value="Post bid" class="btn btn-primary">
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}"><button>Sign in to bid</button></a> 
+                {% endif %}
+            </div>            
+        </div>
+    </div>        
+ 
+    
+    <hr>
+    <div>   
+         {% if highestBid %}
+            <div class="highest-bid-container">
+                <p style="font-size:25px; font-weight: bold;">Highest Bid</p>
+                <p><span style="color:lightcoral">{{highestBid.author}}</span> bids: <span style="color:green">{{ highestBid.bid }}$</span></p>
+                <p style="font-size:15px; color:grey;">{{highestBid.creationDate}}</p>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    {% if user.is_authenticated %}
+        {% if commentForm %}
+        <div class="create-comment-container">
+            <div class="comment-form-user-container">
+                <p>{{ user.username }}</p>
+            </div>
+            <div class="comment-form-container">
+                <form action="{% url 'comment' listing.title %}" method="POST" class="comment-form">
+                    {% csrf_token %}
+                    {{ commentForm }}
+                    
+                    <input type="submit" value="Post comment" class="submit-comment btn btn-primary">
+                </form>
+                
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+        {% if comments %}
+            <div class="container mt-4">
+                <div class="comments-container">
+                    {% for comment in comments %}
+                        <div class="comment-container card mb-3">
+                            <div class="card-body">
+                                <p class="card-text author">{{ comment.author }}</p>
+                                <p class="card-text creation-date ">at {{ comment.creationDate }}</p>                 
+                                <hr>
+                                <p class="card-text comment-text">{{ comment.content }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+</div>
+
+{% endblock %}

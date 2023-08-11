@@ -1,0 +1,68 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="shortcut icon" type="image/png" href="../../../media/favicon.png"> <!-- TODO: change the link-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'auctions/styles.css' %}/" rel="stylesheet">
+        
+    </head>
+    <body>
+       
+        <div class="header py-3 px-4 mb-4">
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="{% url 'index' %}"><img src="{% static 'auctions/images/Logo.png' %}" alt="Logo" class="logo-img"></a>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Active Listings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create' %}">Create Listing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'wishlist' user %}">Watchlist</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div style="color:lightblue">
+                    {% if user.is_authenticated %}
+                        Signed in as <strong>{{ user.username }}</strong>.
+                    {% else %}
+                        Not signed in.
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% block body %}
+        {% endblock %}
+        
+
+
+        <div class="container">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+              <p class="col-md-6 mb-0 text-body-secondary">© Popa Robert-Florian - poparobert22@stud.ase.ro</p>
+                
+              <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a href="https://www.linkedin.com/in/robert-popa-3b8537260/" class="nav-link px-2 text-primary">LinkedIn</a></li>
+                <li class="nav-item"><a href="https://github.com/poparf/AuctionsDjango" class="nav-link px-2 text-danger">Github for more info</a></li>
+              </ul>
+            </footer>
+          </div>
+    </body>
+</html>

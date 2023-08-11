@@ -1,0 +1,41 @@
+{% extends 'auctions/layout.html' %}
+
+
+{% block title %}
+Auctions - {{category}}
+{% endblock %}
+
+{% block body%}
+    {% if message %}
+        <div>
+            <p class="text-danger">There is no listing in this category</p>
+        </div>
+    {% else %}
+        <div class="all-listings d-flex flex-wrap justify-content-around">
+            {% for listing in listings %}
+                <div class="card mb-3 mr-3 " style="max-width: 640px;  border-radius:10px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a href="{% url 'listing' listing.title %}">
+                                <img src="{{ listing.image.url|urlencode }}" class="card-img img-fluid rounded-start " alt="{{listing.title}}">
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <a class="text-decoration-none" href="{% url 'listing' listing.title %}">
+                                    <h5 class="card-title">{{ listing.title }}</h5>
+                                </a>
+                                <a href="{% url 'category' listing.category%}" class="text-decoration-none">
+                                    <p class="card-text mb-3" style="color:rgb(93, 92, 92); font-size:17px;">Category: {{ listing.category }}</p>
+                                </a>
+                                <p class="card-text text-success">Price: {{listing.price}}$</p>
+                                <p class="card-text"><small class="text-body-secondary">posted by {{ listing.author.username }} at {{ listing.creationDate }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}

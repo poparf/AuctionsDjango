@@ -1,0 +1,27 @@
+{% extends 'auctions/layout.html' %}
+
+
+{% block title%}
+Auctions - Create
+{% endblock title%}
+
+{% block body %}
+    <div class="text-center mt-4">
+        {% if message %}
+            <div>
+                <div>
+                    <p class="text-danger">The form is not valid.</p>
+                </div>
+                
+                
+            </div>
+        {% endif %}
+        <div class="d-flex justify-content-center">
+            <form action="{% url 'create' %}" method="POST" enctype="multipart/form-data" style="margin:10px; max-width: 800px;" class="">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit" class="btn btn-primary mt-2">
+            </form>
+        </div>
+    </div>
+{% endblock %}

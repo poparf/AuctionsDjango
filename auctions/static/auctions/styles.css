@@ -1,0 +1,191 @@
+body {
+    padding:0;
+    margin:0;
+  
+}
+
+.logo-img {
+    width:auto;
+    height:50px;
+}
+li a {
+    color:lightblue;
+}
+.header { 
+    background-color:#211c3e;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+}
+
+.custom-card {
+    width: 18rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(113, 113, 113, 0.171);
+    transition: transform 0.3s;
+
+}
+
+.custom-card:hover {
+    transform: scale(1.05);
+}
+
+.custom-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.custom-img-listings {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    height: 100%;
+    width:auto;
+    object-fit: cover;
+}
+
+.custom-card-body {
+    background-color: #ffffff;
+}
+
+.card-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-custom {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-custom:hover {
+    background-color: #138496;
+    border-color: #138496;
+}
+
+
+
+
+
+.create-comment-container {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comment-form-user-container {
+    margin-top:20px;
+    margin-bottom: 0;
+}
+.comment-form-user-container p{
+    font-size:23px;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+.comment-form-container {
+    margin-top:0;
+    
+    align-items: center;
+}
+
+.submit-comment {
+    margin-top:5px;
+    width:200px;
+    outline: none;
+    text-decoration: none;
+}
+
+.comment-form {
+    display:flex;
+    flex-direction: column;
+    min-height: 100px;
+    align-items: center;
+}
+
+.author {
+ 
+ margin-bottom: 0px;
+}
+
+.comment-container { 
+    
+    margin-top:2px;
+}
+
+.creation-date {
+    
+    color:grey;
+    font-size:12px;
+    margin-bottom: 5px;
+
+}
+
+.comment-text {
+    font-weight: 400;
+    font-size:15px;
+    
+}
+
+.listing-header-title {
+font-size:35px;
+}
+.listing-header-subtitle {
+font-size:25px;
+color:grey;
+}
+
+.category-container p {
+font-size:25px;
+}
+
+.category-container a {
+text-decoration: none;
+outline: none;
+}
+
+#wishlist-btn {
+width:200px;
+
+}
+
+.button-listing-container { 
+display:flex;
+justify-content: space-around;
+}
+
+
+.img-container {
+border:1px solid black;
+margin-right:40px;
+
+}
+
+.img-contaier img {
+    width:150px;
+}
+
+
+.content-container { 
+display:flex;
+flex-direction: row;
+}
+
+.price-container p { 
+    font-size:30px;
+    color:green;
+    margin-bottom: 0;
+}
+
+.highest-bid-container {
+    display:flex;
+     flex-direction: column;
+    align-items: center;
+    
+    padding-top:5px;
+   
+}
