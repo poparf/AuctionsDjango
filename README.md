@@ -1,6 +1,6 @@
 # Auctions with bidding system done in Django
-An eccomerce/e-bay like project done in Django and Boostrap.
-
+An eccomerce/e-bay like project done in Django and Boostrap.  
+Presentation: https://www.youtube.com/watch?v=k5cwWV005To&ab_channel=PopaRobert
 ![Captură de ecran 2023-08-11 223541](https://github.com/poparf/AuctionsDjango/assets/127143771/eb386ce0-a578-446f-b3f7-ebf62c9f1df1)
 
 
